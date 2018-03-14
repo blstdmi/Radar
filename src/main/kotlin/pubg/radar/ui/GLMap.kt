@@ -169,14 +169,14 @@ class GLMap : InputAdapter(), ApplicationListener, GameListener {
     private val attackLineStartTime = LinkedList<Triple<NetworkGUID, NetworkGUID, Long>>()
     private val pinLocation = Vector2()
     private var filterWeapon = -1
-    private var filterAttach = 1
-    private var filterLvl2 = 1
+    private var filterAttach = -1
+    private var filterLvl2 = -1
     private var filterScope = -1
-    private var filterHeals = -1
+    private var filterHeals = 1
     private var filterAmmo = 1
     private var filterThrow = 1
-    private var drawcompass = -1
-    private var toggleView = -1
+    private var drawcompass = 1
+    private var toggleView = 1
     private var scopesToFilter = arrayListOf("")
     private var weaponsToFilter = arrayListOf("")
     private var attachToFilter = arrayListOf("")
@@ -252,19 +252,19 @@ class GLMap : InputAdapter(), ApplicationListener, GameListener {
             HOME -> drawcompass = drawcompass * -1
             END -> drawgrid = drawgrid * -1
             NUMPAD_0 -> filterThrow = filterThrow * -1
-            NUMPAD_4 -> filterWeapon = filterWeapon * -1
-            NUMPAD_1 -> filterAttach = filterAttach * -1
-            NUMPAD_5 -> filterLvl2 = filterLvl2 * -1
-            NUMPAD_2 -> filterScope = filterScope * -1
-            NUMPAD_6 -> filterHeals = filterHeals * -1
-            NUMPAD_3 -> filterAmmo = filterAmmo * -1
+            F1 -> filterWeapon = filterWeapon * -1
+            F2 -> filterAttach = filterAttach * -1
+            F3 -> filterLvl2 = filterLvl2 * -1
+            F4 -> filterScope = filterScope * -1
+            F5 -> filterHeals = filterHeals * -1
+            F6 -> filterAmmo = filterAmmo * -1
             NUMPAD_7 -> camera.zoom = 1 / 8f
             NUMPAD_8 -> camera.zoom = 1 / 12f
             NUMPAD_9 -> camera.zoom = 1 / 24f
 
         // Toggle Transparent Player Icons
             F7 -> toggleVehicles = toggleVehicles * -1
-            F6 -> toggleVNames = toggleVNames * -1
+            F12 -> toggleVNames = toggleVNames * -1
 
         // Zoom In/Out || Overrides Max/Min Zoom
             F9 -> camera.zoom = camera.zoom + 0.00525f
@@ -597,31 +597,31 @@ class GLMap : InputAdapter(), ApplicationListener, GameListener {
 
 
         attachToFilter = if (filterAttach != 1) {
-            arrayListOf("")
+            arrayListOf("U.Ext","U.ExtQ", "U.Supp")
         } else {
             arrayListOf("AR.Stock", "S.Loops", "CheekPad", "A.Grip", "V.Grip", "U.Ext", "AR.Ext", "S.Ext", "U.ExtQ", "AR.ExtQ", "S.ExtQ", "Choke", "AR.Comp", "FH", "U.Supp", "AR.Supp", "S.Supp")
         }
 
         weaponsToFilter = if (filterWeapon != 1) {
-            arrayListOf("")
+            arrayListOf("Vector", "UZI","DP28")
         } else {
             arrayListOf("M16A4", "HK416", "Kar98k", "SCAR-L", "AK47", "SKS", "Mini14", "DP28", "UMP", "Vector", "UZI", "Pan")
         }
 
         healsToFilter = if (filterHeals != 1) {
-            arrayListOf("")
+            arrayListOf("Bandage")
         } else {
             arrayListOf("Bandage", "FirstAid", "MedKit", "Drink", "Pain", "Syringe")
         }
 
         ammoToFilter = if (filterAmmo != 1) {
-            arrayListOf("")
+            arrayListOf("9mm", "45mm")
         } else {
             arrayListOf("9mm", "45mm", "556mm", "762mm", "300mm")
         }
 
         throwToFilter = if (filterThrow != 1) {
-            arrayListOf("")
+            arrayListOf("FlashBang", "SmokeBomb", "Molotov")
         } else {
             arrayListOf("Grenade", "FlashBang", "SmokeBomb", "Molotov")
         }
